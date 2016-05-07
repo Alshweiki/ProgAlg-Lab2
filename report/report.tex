@@ -7,12 +7,28 @@
 %\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
 \usepackage{graphicx}				% Use pdf, png, jpg, or epsÂ§ with pdflatex; use eps in DVI mode
 								% TeX will automatically convert eps --> pdf in pdflatex		
+
+\usepackage{xcolor}
 \usepackage{amssymb}
 \usepackage{listings}
 \usepackage{caption}
 \usepackage{hyperref}
  
-\lstset{language=C,label=DescriptiveLabel}
+\lstset{
+	numbers=left,
+	basicstyle=\ttfamily\scriptsize,
+	breakatwhitespace=false, 
+  	breaklines=true, 
+  	captionpos=t, 
+	numbersep=10pt,
+	numberstyle=\tiny,
+	showspaces=false,
+	tabsize=2,	
+	language=C,
+	label=DescriptiveLabel,
+ 	commentstyle=\color{gray},
+ 	keywordstyle=\color{blue}
+}
 
 
 \usepackage{titling}
@@ -57,9 +73,9 @@ The sequential reference time is the time used to do the computation using only 
 
 
 \chapter{Computation of parallel times}
-Each group will have to compute for five different sizes of the matrix ($N$), the time for five different numbers of workers ($W$).
+Each group will have to compute for five different sizes of the matrix ($N$), the time for five different numbers of workers ($W$). Our group will made computation for this sizes:
 
-Matrix sizes:
+\vspace{1cm}
 \[
 \begin{tabular}{|r|}
 \hline
@@ -74,7 +90,7 @@ Matrix sizes ($N$) \\
 \end{tabular}
 \]
 
-Workers distribution:
+\vspace{1cm}
 \[
 \begin{tabular}{|c|r|}
 \hline
@@ -88,6 +104,20 @@ Workers ($W$) & $= LxC$ \\
 \hline
 \end{tabular}
 \]
+
+\newpage
+
+We had some difficulties to execute our script correctly. The first time, the script haven't be executed because relative path. The second time, the script ran but we compute only 25 calculs. We have made only one size by worker size. 
+
+
+\lstinputlisting[language=bash,caption={Cron job}]{./files/crontab.sh}
+
+\newpage
+
+This version is the third version that execute the 100 calculation we missed. This why in each size we have a commented line.
+
+
+\lstinputlisting[language=bash,caption={Final bash script}]{./files/runme.sh}
 
 \newpage
 
