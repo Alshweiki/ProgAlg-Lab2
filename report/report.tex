@@ -1,0 +1,103 @@
+\documentclass[11pt, oneside]{report}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage[latin1]{inputenc} 
+\usepackage[T1]{fontenc}
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or epsÃ‚Â§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{hyperref}
+ 
+\lstset{language=C,label=DescriptiveLabel}
+
+
+\usepackage{titling}
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \par\end{center}
+    \begin{center}\large#1\end{center}
+    \vskip0.5em}
+}
+\DeclareCaptionFormat{listing}{\rule{\dimexpr\textwidth+17pt\relax}{0.4pt}\vskip1pt#1#2#3}
+
+\title{Distributed HPC programming with MPI/OpenMP}
+\subtitle{Distributed Matrix Multiplication}
+\author{Alshweiki Mhd Ali \thanks{\ mhdali.alshweiki@master.hes-so.ch}\\ 
+Gugger Joël \thanks{\ joel.gugger@master.hes-so.ch}\\ 
+Marguet Steve-David \thanks{\ stevedavid.marguet@master.hes-so.ch} \\ \\ user: ggroup20@grid11}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+
+\pagenumbering{gobble}
+
+
+
+\begin{abstract}
+The objective of this exercise is to parallelize a square matrix multiplication program with MPI and OpenMP. This program computes the following product:
+\[
+	A \times B = R
+\]
+where A, B and R are NxN square matrices. The tested sizes N are: 1900, 2800, 3700, 4600, 5500, 6400, 7300, 8100, 9000, 9900.
+\end{abstract}
+
+
+\pagenumbering{arabic}
+
+\chapter{Code MPI \& OpenMP}
+La premiï¿½re partie de notre travail ï¿½ ï¿½tï¿½ d'implementer le parallï¿½lisme en distribuant la charge de travail sur diffï¿½rentes machines. Nous avons choisi d'utiliser 9 hosts. Le premier ï¿½tant le master, et les 8 autres des workers. La matrice est donc sï¿½parï¿½e en 8 parties.
+
+En calculant le pourcentage du temps mesurï¿½ en parallï¿½le par rapport au temps sï¿½quentiel, on constate que pour toutes les valleures mesurï¿½es nous arrivons en dessous des 7\% du temps sï¿½quentiel. On constate ï¿½galement que le programme parallï¿½le est de plus en plus performant lorsque la matrice grandi.
+
+\[
+\begin{tabular}{|r|r|r|}
+\hline
+Sequential time & Parallel time & Percentage \\
+\hline
+60.832	& 4.00	& 6.58\% \\
+203.151	& 13.00	& 6.40\% \\
+543.5105	& 28.00	& 5.15\% \\
+1033.095	& 52.00	& 5.03\% \\
+1872.805	& 84.74	& 4.52\% \\
+5315.51	& 336.36	& 6.33\% \\
+4481.75	& 183.97	& 4.10\% \\
+6363.86	& 251.53	& 3.95\% \\
+8717.87	& 352.56	& 4.04\% \\
+12371.8	& 462.97	& 3.74\% \\
+\hline
+\end{tabular}
+\]
+
+\newpage
+
+
+
+\begin{abstract}
+\begin{center}
+Les sources du projet sont disponibles sur GitHub à l'adresse suivante : \\
+\href{https://github.com/Alshweiki/ProgAlg-Lab2}{https://github.com/Alshweiki/ProgAlg-Lab2}
+\end{center}
+\end{abstract}
+
+
+\end{document}  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
