@@ -13,11 +13,17 @@
 \usepackage{listings}
 \usepackage{caption}
 \usepackage{hyperref}
+\usepackage[scaled=0.85]{beramono}
+\usepackage[scaled]{beraserif}
+\usepackage[scaled]{berasans}
+
+\renewcommand*\familydefault{\rmdefault} 
  
 \lstset{
 	numbers=left,
 	basicstyle=\ttfamily\scriptsize,
-	breakatwhitespace=false, 
+	breakatwhitespace=false,
+	frame=single,
   	breaklines=true, 
   	captionpos=t, 
 	numbersep=10pt,
@@ -57,24 +63,57 @@ Marguet Steve-David \thanks{\ stevedavid.marguet@master.hes-so.ch} \\ \\ user: g
 
 \begin{abstract}
 
-The objective of this lab is to execute and to analyse the performances of a parallel square matrices multiplication program written in POP-C++ and in POP-Java. As for the MPI/OpenMP lab, these programs computes square matrices multiplication, i.e. the product $A \times B = R$ where $A$, $B$ and $R$ are $N \times N$ matrices (square matrix).
+The objective of this lab is to execute and to analyse the performances of a parallel square matrices multiplication program written in POP-C++ and in POP-Java. As for the MPI/OpenMP lab, these programs compute square matrices multiplication, i.e. the product $A \times B = R$ where $A$, $B$ and $R$ are $N \times N$ matrices (square matrix).
 The program uses a « Master/Worker » approach. The master prepares the matrices, creates the workers (POP-C++ or POP-Java parallel objects), sends the work to do to each workers, waits for the partial result of each worker and finally reconstructs the $R$ matrix.
 
-The algorithm behaves similarly to the one of the MPI/OpenMP lab by dividing the matrix $A$ in several bloc of lines and the matrix $B$ in several blocs of columns.
+The algorithm behaves similarly to the one of the MPI/OpenMP lab by dividing the matrix $A$ in several blocks of lines and the matrix $B$ in several blocks of columns.
 
 \end{abstract}
 
 
 \pagenumbering{arabic}
 
-\chapter{Computation of sequential references times}
-The sequential reference time is the time used to do the computation using only one worker and one core.
+\chapter{Computation of "sequential" references times}
+The so-called sequential reference time is the time we used to do the computation of the whole matrices, using only one worker and four cores.
 
-\lstinputlisting[numbers=none,caption={Sequential results},basicstyle=\ttfamily\tiny,]{./files/sequential_time.sh}
+\lstinputlisting[language=bash,numbers=none,caption={Sequential results},basicstyle=\ttfamily\tiny,]{./files/sequential_time.sh}
 
+\newpage
+
+\begin{figure}
+    \begin{center}
+        \includegraphics[width=300pt]{Plots/Comput-seq.png}
+        \caption{Sequential computing time}
+        \label{fig:Sequential computing time}
+    \end{center}
+\end{figure}
+
+\begin{figure}
+    \begin{center}
+        \includegraphics[width=300pt]{Plots/Init-seq.png}
+        \caption{Sequential computing - Initialization time}
+        \label{fig:Sequential computing - Initialization time}
+    \end{center}
+\end{figure}
+
+\begin{figure}
+    \begin{center}
+        \includegraphics[width=300pt]{Plots/Send-seq.png}
+        \caption{Sequential computing - Sending time}
+        \label{fig:Sequential computing - Sending time}
+    \end{center}
+\end{figure}
+
+\begin{figure}
+    \begin{center}
+        \includegraphics[width=300pt]{Plots/Total-seq.png}
+        \caption{Sequential computing - Total time}
+        \label{fig:Sequential computing - Total time}
+    \end{center}
+\end{figure}
 
 \chapter{Computation of parallel times}
-Each group will have to compute for five different sizes of the matrix ($N$), the time for five different numbers of workers ($W$). Our group will made computation for this sizes:
+Each group will have to compute for five different sizes of matrices ($N$), the time for five different numbers of workers ($W$). Our group will make computations for this sizes:
 
 \vspace{1cm}
 \[
@@ -120,22 +159,33 @@ This version is the third version that execute the 100 calculation we missed. Th
 
 \lstinputlisting[language=bash,caption={Final bash script}]{./files/runme.sh}
 
+\begin{figure}
+    \begin{center}
+        \includegraphics[width=300pt]{Plots/SpeedUp.png}
+        \caption{SpeedUp}
+        \label{fig:SpeedUp}
+    \end{center}
+\end{figure}
+
+\begin{figure}
+    \begin{center}
+        \includegraphics[width=300pt]{Plots/Efficiency.png}
+        \caption{Efficiency}
+        \label{fig:Efficiency}
+    \end{center}
+\end{figure}
+
 \newpage
-
-
 
 \begin{abstract}
 \begin{center}
-Les sources du projet sont disponibles sur GitHub à l'adresse suivante : \\
+The sources of the project are available on GitHub at the following address: \\
 \href{https://github.com/Alshweiki/ProgAlg-Lab2}{https://github.com/Alshweiki/ProgAlg-Lab2}
 \end{center}
 \end{abstract}
 
 
 \end{document}  
-
-
-
 
 
 
